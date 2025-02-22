@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Entry/Exit</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400&display=swap');
+        
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: 'Chakra Petch', sans-serif;
+        }
+        h2{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        form{
+
+            display: grid;
+            justify-content: center;
+            align-items: center;
+
+            input{
+
+                border-radius: 5px;
+                width: 10rem;
+                height: 1rem;
+            }
+            label{
+
+                text-align: center;
+                font-size: larger;
+                margin: 10px;
+            }
+
+            button{
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #555;
+                color: aliceblue;
+                font-size: larger;
+                padding: 10px;
+                border-radius: 10px;
+                font-family: 'Chakra Petch', sans-serif;
+                margin-top: -15px;
+            }
+
+        }
+        a{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 25px;
+            text-decoration: none;
+            color: #555;
+            font-weight: 900;
+            font-family: 'Chakra Petch', sans-serif;
+            padding: 5px;
+        
+        }
+
+    </style>
+</head>
+<body>
+    <h2>Mark Entry/Exit for a Student</h2>
+    <form action="{{ url_for('mark_entry_exit') }}" method="POST">
+        <label for="student_id">Student ID:</label>
+        <input type="text" id="student_id" name="student_id" required><br><br>
+        <button type="submit">Mark Entry/Exit</button>
+    </form>
+    <a href="{{ url_for('home') }}">Back to Home</a>
+</body>
+</html>

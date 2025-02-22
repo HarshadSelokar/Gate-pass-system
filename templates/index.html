@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Gate Pass System</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400&display=swap');
+        
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: 'Chakra Petch', sans-serif;
+        }
+
+        .head, .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            background-color: #555;
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 8px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="head">
+        <h1>Welcome to the Gate Pass System</h1>
+    </div>
+    <div class="container">
+        <a href="{{ url_for('add_gate_pass') }}" class="button">Add New Gate Pass</a>
+        <a href="{{ url_for('view_entries') }}" class="button">View All Entries</a>
+        <div class="mark-entry-exit">
+            <a href="{{ url_for('mark_entry_exit') }}" class="button">Mark Entry/Exit</a>
+        </div>
+    </div>
+
+    <div class="fa-it-g">
+
+        <i class="fa fa-github-alt" aria-hidden="true">
+            <i class="fa fa-quora" aria-hidden="true">
+                <i class="fa fa-i-cursor" aria-hidden="true">
+                    <i class="fas fa-journal-whills    ">
+                        <i class="fa fa-code-fork" aria-hidden="true">
+                            
+                        </i>
+                    </i>
+                </i>
+            </i>
+        </i>
+    </div>
+    
+</body>
+</html>
