@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scan QR</title>
+  <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+  <h2>Scan QR Code</h2>
+  <div id="reader"></div>
+
+  <script>
+    function logStatus(uid) {
+      fetch('/log_entry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ uid: uid, status: 'OUT' })  // or 'IN'
+      }).then(res => res.json())
+        .then(data => alert("Entry logged: " + data.status));
+    }
+
+    const qrCodeSuccess = (decodedText, decodedResult) => {
+      logStatus(decodedText);
+    };
+
+    new Html5Qrcode("reader")
+      .start({ facingMode: "environment" }, { fps: 10, qrbox: 250 }, qrCodeSuccess);
+  </script>
+</body>
+</html>

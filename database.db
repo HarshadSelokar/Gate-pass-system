@@ -1,0 +1,15 @@
+-- students table
+CREATE TABLE students (
+    uid TEXT PRIMARY KEY,
+    name TEXT,
+    year TEXT,
+    branch TEXT
+);
+
+-- logs table
+CREATE TABLE logs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    uid TEXT,
+    status TEXT CHECK(status IN ('IN', 'OUT')),
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+);
