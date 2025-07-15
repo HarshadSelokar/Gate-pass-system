@@ -1,29 +1,49 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Scan QR</title>
-  <script src="https://unpkg.com/html5-qrcode"></script>
-</head>
-<body>
-  <h2>Scan QR Code</h2>
-  <div id="reader"></div>
+{% extends "base.html" %}
+{% block content %}
+<h2 class="section-title">QR Code Scanner</h2>
 
-  <script>
-    function logStatus(uid) {
-      fetch('/log_entry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ uid: uid, status: 'OUT' })  // or 'IN'
-      }).then(res => res.json())
-        .then(data => alert("Entry logged: " + data.status));
+<div class="mb-3">
+  <label for="status" class="form-label">Log Status</label>
+  <select id="status" class="form-select">
+    <option value="IN">IN</option>
+    <option value="OUT">OUT</option>
+  </select>
+</div>
+
+<div class="d-flex justify-content-center">
+  <div id="reader" style="width: 300px;"></div>
+</div>
+
+<p class="mt-3 fw-bold text-success text-center" id="log-status">Waiting for scan...</p>
+
+<script src="https://unpkg.com/html5-qrcode"></script>
+<script>
+  function logEntry(uid) {
+    const status = document.getElementById("status").value;
+    fetch("/log_entry", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ uid, status })
+    })
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("log-status").innerText = data.message || "Scan recorded.";
+    })
+    .catch(() => {
+      document.getElementById("log-status").innerText = "Failed to log entry.";
+    });
+  }
+
+  const scanner = new Html5Qrcode("reader");
+  scanner.start(
+    { facingMode: "environment" },
+    { fps: 10, qrbox: 250 },
+    decodedText => {
+      scanner.stop().then(() => {
+        logEntry(decodedText);
+        setTimeout(() => location.reload(), 2000);
+      });
     }
-
-    const qrCodeSuccess = (decodedText, decodedResult) => {
-      logStatus(decodedText);
-    };
-
-    new Html5Qrcode("reader")
-      .start({ facingMode: "environment" }, { fps: 10, qrbox: 250 }, qrCodeSuccess);
-  </script>
-</body>
-</html>
+  );
+</script>
+{% endblock %}

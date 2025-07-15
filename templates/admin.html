@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <h2>Admin Panel</h2>
+
+  <h3>Registered Students</h3>
+  <table border="1">
+    <tr>
+      <th>UID</th>
+      <th>Name</th>
+      <th>Year</th>
+      <th>Branch</th>
+    </tr>
+    {% for s in students %}
+    <tr>
+      <td>{{ s.uid }}</td>
+      <td>{{ s.name }}</td>
+      <td>{{ s.year }}</td>
+      <td>{{ s.branch }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <h3>Entry/Exit Logs</h3>
+  <table border="1">
+    <tr>
+      <th>Log ID</th>
+      <th>UID</th>
+      <th>Status</th>
+      <th>Timestamp</th>
+    </tr>
+    {% for log in logs %}
+    <tr>
+      <td>{{ log.id }}</td>
+      <td>{{ log.uid }}</td>
+      <td>{{ log.status }}</td>
+      <td>{{ log.timestamp }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <p><a href="/">Back to Register</a> | <a href="/scan">Go to QR Scan</a></p>
+</body>
+</html>

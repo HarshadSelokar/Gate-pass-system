@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="section-title">Register New Student</h2>
+
+<form method="POST" action="/register" class="row row-cols-1 row-cols-md-2 g-3">
+  <div class="col">
+    <label class="form-label">UID</label>
+    <input type="text" name="uid" class="form-control" required />
+  </div>
+  <div class="col">
+    <label class="form-label">Name</label>
+    <input type="text" name="name" class="form-control" required />
+  </div>
+  <div class="col">
+    <label class="form-label">Year</label>
+    <input type="text" name="year" class="form-control" required />
+  </div>
+  <div class="col">
+    <label class="form-label">Branch</label>
+    <input type="text" name="branch" class="form-control" required />
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary w-100">Register & Download QR</button>
+  </div>
+</form>
+{% endblock %}

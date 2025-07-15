@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="section-title">Admin Dashboard</h2>
+
+<div class="mb-3">
+  <label for="dateSelect" class="form-label">Select Date to View Logs:</label>
+  <select class="form-select" id="dateSelect" onchange="location.href='/logs/' + this.value">
+    <option disabled selected>Choose a date</option>
+    {% for d in dates %}
+      <option value="{{ d.strftime('%Y-%m-%d') }}">{{ d.strftime('%d %B %Y') }}</option>
+    {% endfor %}
+  </select>
+</div>
+{% endblock %}

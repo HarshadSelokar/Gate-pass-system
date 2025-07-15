@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="section-title">Students Currently Inside</h2>
+
+{% if students %}
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>UID</th>
+        <th>Name</th>
+        <th>Year</th>
+        <th>Branch</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in students %}
+      <tr>
+        <td>{{ student.uid }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.year }}</td>
+        <td>{{ student.branch }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+  <p class="text-muted">No student is currently inside.</p>
+{% endif %}
+{% endblock %}
